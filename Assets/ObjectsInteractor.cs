@@ -13,7 +13,7 @@ public class ObjectsInteractor : MonoBehaviour
         {
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 10))
+            if (Physics.Raycast(ray, out hit, 4))
             {
                 if (hit.collider.TryGetComponent(out DoorSystem doorSystem))
                 {
@@ -32,7 +32,7 @@ public class ObjectsInteractor : MonoBehaviour
         {
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 10))
+            if (Physics.Raycast(ray, out hit, 4))
             {
                 if (hit.collider.TryGetComponent(out DoorSystem doorSystem))
                 {

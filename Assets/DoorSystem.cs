@@ -42,6 +42,7 @@ public class DoorSystem : MonoBehaviour
 
     private void LockTheDoor()
     {
+        UIManager.I.ShowLockMessage();
         ChangeState(DoorState.Locked);
     }
 
@@ -83,7 +84,11 @@ public class DoorSystem : MonoBehaviour
                         if (keysHolder.isHaveKey(doorType))
                         {
                             UnLockTheDoor();
-                        } 
+                        }
+                        else
+                        {
+                            UIManager.I.CantFindRightKeyMessage();
+                        }
                         break;
                 }
     }

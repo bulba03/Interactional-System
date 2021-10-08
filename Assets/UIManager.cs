@@ -9,6 +9,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject lockedText;
     [SerializeField] private TextMeshProUGUI keyText;
     [SerializeField] private TextMeshProUGUI unlockText;
+    [SerializeField] private TextMeshProUGUI cantFindKeyText;
+    [SerializeField] private TextMeshProUGUI lockText;
     public static UIManager I;
     
     private void Awake()
@@ -28,11 +30,23 @@ public class UIManager : MonoBehaviour
         StartCoroutine(UnLockedMessageRoutine());
     }
 
+    public void CantFindRightKeyMessage()
+    {
+        StopCoroutine(CantFindRightKeyRoutine());
+        StartCoroutine(CantFindRightKeyRoutine());
+    }
+    
     public void ShowKeyPickupMessage(DoorType keytype)
     {
         StopCoroutine(PickedupMessageRoutine());
         keyText.text = $"You picked up {keytype.ToString()} key";
         StartCoroutine(PickedupMessageRoutine());
+    }
+
+    public void ShowLockMessage()
+    {
+        StopCoroutine(LockTheDoorRoutine());
+        StartCoroutine(LockTheDoorRoutine());
     }
 
     IEnumerator LockedMessageRoutine()
@@ -53,5 +67,19 @@ public class UIManager : MonoBehaviour
         keyText.gameObject.SetActive(true);
         yield return new WaitForSeconds(1f);
         keyText.gameObject.SetActive(false);
+    }
+
+    IEnumerator CantFindRightKeyRoutine()
+    {
+        cantFindKeyText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        cantFindKeyText.gameObject.SetActive(false);
+    }
+
+    IEnumerator LockTheDoorRoutine()
+    {
+        lockText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        lockText.gameObject.SetActive(false);
     }
 }
